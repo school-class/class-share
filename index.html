@@ -3,123 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class Share</title>
+<title>Nova Share</title>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:sans-serif;
+  font-family:'Inter',sans-serif;
 }
 
 body{
-  background:#0f172a;
+  background:#060816;
   color:white;
-  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top left,#3b82f650,transparent 30%),
+  radial-gradient(circle at bottom right,#8b5cf650,transparent 30%),
+  #060816;
+  z-index:-1;
 }
 
 /* ===== HEADER ===== */
 
 header{
-  padding:30px 20px;
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
-  border-bottom-left-radius:30px;
-  border-bottom-right-radius:30px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  padding:80px 8%;
 }
 
-header h1{
-  font-size:42px;
-  margin-bottom:10px;
+.logo{
+  font-size:18px;
+  color:#94a3b8;
+  margin-bottom:20px;
 }
 
-header p{
-  color:#dbeafe;
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:50px;
+  flex-wrap:wrap;
+}
+
+.hero-text h1{
+  font-size:72px;
+  line-height:1;
+  margin-bottom:25px;
+  letter-spacing:-3px;
+}
+
+.hero-text p{
+  font-size:20px;
+  color:#94a3b8;
+  max-width:600px;
+  line-height:1.7;
+}
+
+.hero-card{
+  width:320px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:30px;
+  padding:30px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+.hero-card h2{
+  margin-bottom:15px;
+}
+
+.hero-card p{
+  color:#94a3b8;
+  line-height:1.7;
 }
 
 /* ===== MAIN ===== */
 
 .container{
-  max-width:1000px;
+  width:90%;
+  max-width:1200px;
   margin:auto;
-  padding:25px;
 }
 
 .section-title{
-  font-size:28px;
-  margin-bottom:20px;
+  font-size:32px;
+  margin-bottom:30px;
+  letter-spacing:-1px;
 }
 
-/* ===== FILE CARD ===== */
+/* ===== FILE GRID ===== */
 
-.files{
+.file-grid{
   display:grid;
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
 
 .file-card{
-  background:#1e293b;
-  border:1px solid #334155;
-  border-radius:20px;
-  padding:20px;
-  transition:0.2s;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;
+  padding:28px;
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.file-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#3b82f620,transparent);
+  opacity:0;
+  transition:0.3s;
+}
+
+.file-card:hover::before{
+  opacity:1;
 }
 
 .file-card:hover{
-  transform:translateY(-4px);
+  transform:translateY(-8px);
   border-color:#60a5fa;
 }
 
+.file-icon{
+  font-size:40px;
+  margin-bottom:18px;
+}
+
 .file-card h2{
-  margin-bottom:10px;
+  margin-bottom:12px;
+  font-size:24px;
+}
+
+.file-card p{
+  color:#94a3b8;
+  line-height:1.7;
+  margin-bottom:20px;
 }
 
 .file-card a{
   text-decoration:none;
   color:#60a5fa;
+  font-weight:600;
 }
 
-/* ===== INFO BOXES ===== */
+/* ===== INFO SECTION ===== */
 
-.info-grid{
-  margin-top:40px;
+.bottom{
+  margin-top:80px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
 }
 
-.info-box{
-  background:#111827;
-  border-radius:20px;
-  padding:20px;
-  border:1px solid #1f2937;
+.info{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:25px;
+  padding:25px;
 }
 
-.info-box h3{
-  margin-bottom:10px;
+.info h3{
+  margin-bottom:15px;
+}
+
+.info p{
+  color:#94a3b8;
+  line-height:1.7;
 }
 
 /* ===== FLOAT BUTTON ===== */
 
 .add-btn{
   position:fixed;
-  right:25px;
-  bottom:25px;
-  width:70px;
-  height:70px;
+  right:30px;
+  bottom:30px;
+  width:80px;
+  height:80px;
   border:none;
   border-radius:50%;
   background:linear-gradient(135deg,#3b82f6,#8b5cf6);
   color:white;
-  font-size:40px;
+  font-size:42px;
   cursor:pointer;
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
-  transition:0.2s;
+  box-shadow:0 15px 40px rgba(59,130,246,0.4);
+  transition:0.3s;
 }
 
 .add-btn:hover{
-  transform:scale(1.08);
+  transform:scale(1.08) rotate(90deg);
 }
 
 /* ===== POPUP ===== */
@@ -127,129 +212,196 @@ header p{
 .popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
   display:none;
   justify-content:center;
   align-items:center;
+  padding:20px;
 }
 
-.popup-content{
-  width:90%;
-  max-width:400px;
-  background:#1e293b;
-  border-radius:25px;
-  padding:25px;
-  border:1px solid #334155;
+.popup-box{
+  width:100%;
+  max-width:450px;
+  background:#111827;
+  border-radius:35px;
+  padding:35px;
+  border:1px solid rgba(255,255,255,0.08);
+  animation:show 0.25s ease;
 }
 
-.popup-content h2{
-  margin-bottom:20px;
+@keyframes show{
+  from{
+    transform:translateY(20px);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+.popup-box h2{
+  margin-bottom:25px;
+  font-size:30px;
 }
 
 .input{
   width:100%;
-  padding:14px;
-  margin-bottom:15px;
+  padding:18px;
+  margin-bottom:18px;
   border:none;
-  border-radius:12px;
-  background:#0f172a;
+  border-radius:18px;
+  background:#1e293b;
   color:white;
+  font-size:15px;
 }
 
-.save-btn{
+.input:focus{
+  outline:2px solid #3b82f6;
+}
+
+.submit{
   width:100%;
-  padding:14px;
+  padding:18px;
   border:none;
-  border-radius:12px;
-  background:#3b82f6;
+  border-radius:18px;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
   color:white;
   font-size:16px;
   cursor:pointer;
+  transition:0.3s;
 }
 
-.save-btn:hover{
-  background:#2563eb;
+.submit:hover{
+  opacity:0.9;
 }
 
 /* ===== FOOTER ===== */
 
 footer{
-  margin-top:50px;
-  padding:30px;
+  padding:60px 20px;
   text-align:center;
-  color:#94a3b8;
+  color:#64748b;
+  margin-top:80px;
 }
+
 </style>
 </head>
 <body>
 
+<div class="bg"></div>
+
 <header>
-  <h1>📚 Class Share</h1>
-  <p>クラス用ファイル共有サイト</p>
+
+  <div class="logo">Nova Share</div>
+
+  <div class="hero">
+
+    <div class="hero-text">
+      <h1>Share<br>Everything.</h1>
+      <p>
+        クラス用のスタイリッシュな
+        ファイル共有スペース。
+        最新ファイルをすぐ共有。
+      </p>
+    </div>
+
+    <div class="hero-card">
+      <h2>⚡ Fast Access</h2>
+      <p>
+        学校iPadでも軽く動くように
+        シンプルで高速な構成。
+      </p>
+    </div>
+
+  </div>
+
 </header>
 
 <div class="container">
 
-  <h2 class="section-title">🔥 最新のファイル</h2>
+  <h2 class="section-title">最新のファイル</h2>
 
-  <div class="files" id="files">
+  <div class="file-grid" id="files">
 
     <div class="file-card">
+      <div class="file-icon">📘</div>
       <h2>数学まとめ</h2>
-      <a href="#">ファイルを開く</a>
+      <p>テスト範囲と重要ポイント。</p>
+      <a href="#">Open File →</a>
     </div>
 
   </div>
 
-  <div class="info-grid">
+  <div class="bottom">
 
-    <div class="info-box">
-      <h3>📢 お知らせ</h3>
-      <p>テスト範囲を追加しました。</p>
+    <div class="info">
+      <h3>📢 Updates</h3>
+      <p>
+        最新ファイルは自動で
+        一番上に表示されます。
+      </p>
     </div>
 
-    <div class="info-box">
-      <h3>📅 次の提出</h3>
-      <p>英語ワーク 金曜日まで</p>
+    <div class="info">
+      <h3>📂 Files</h3>
+      <p id="count">1 files uploaded</p>
     </div>
 
-    <div class="info-box">
-      <h3>📁 ファイル数</h3>
-      <p id="fileCount">1 files</p>
+    <div class="info">
+      <h3>🚀 System</h3>
+      <p>
+        軽量デザインで高速表示。
+      </p>
     </div>
 
   </div>
 
 </div>
 
-<!-- FLOAT BUTTON -->
-<button class="add-btn" onclick="openPopup()">＋</button>
+<button class="add-btn" onclick="openPopup()">+</button>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
-  <div class="popup-content">
 
-    <h2>ファイル追加</h2>
+  <div class="popup-box">
 
-    <input class="input" id="fileName" placeholder="表示する名前">
+    <h2>New File</h2>
 
-    <input class="input" id="fileLink" placeholder="ファイルのリンク">
+    <input
+      class="input"
+      id="fileName"
+      placeholder="表示する名前">
 
-    <button class="save-btn" onclick="addFile()">
-      追加
+    <input
+      class="input"
+      id="fileDesc"
+      placeholder="説明">
+
+    <input
+      class="input"
+      id="fileLink"
+      placeholder="ファイルリンク">
+
+    <button
+      class="submit"
+      onclick="addFile()">
+      Add File
     </button>
 
   </div>
+
 </div>
 
 <footer>
-  © 2026 Class Share
+  © 2026 Nova Share
 </footer>
 
 <script>
+
 const popup = document.getElementById("popup");
 const files = document.getElementById("files");
-const fileCount = document.getElementById("fileCount");
+const count = document.getElementById("count");
 
 function openPopup(){
   popup.style.display = "flex";
@@ -263,8 +415,14 @@ popup.addEventListener("click",(e)=>{
 
 function addFile(){
 
-  const name = document.getElementById("fileName").value;
-  const link = document.getElementById("fileLink").value;
+  const name =
+    document.getElementById("fileName").value;
+
+  const desc =
+    document.getElementById("fileDesc").value;
+
+  const link =
+    document.getElementById("fileLink").value;
 
   if(name === "" || link === ""){
     alert("入力してください");
@@ -272,23 +430,31 @@ function addFile(){
   }
 
   const card = document.createElement("div");
+
   card.className = "file-card";
 
   card.innerHTML = `
+    <div class="file-icon">📄</div>
     <h2>${name}</h2>
-    <a href="${link}" target="_blank">ファイルを開く</a>
+    <p>${desc}</p>
+    <a href="${link}" target="_blank">
+      Open File →
+    </a>
   `;
 
   files.prepend(card);
 
-  fileCount.innerText =
-    document.querySelectorAll(".file-card").length + " files";
+  count.innerText =
+    document.querySelectorAll(".file-card").length
+    + " files uploaded";
 
   document.getElementById("fileName").value = "";
+  document.getElementById("fileDesc").value = "";
   document.getElementById("fileLink").value = "";
 
   popup.style.display = "none";
 }
+
 </script>
 
 </body>
